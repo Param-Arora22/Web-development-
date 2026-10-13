@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Todo</title>
+    <style>
+      
+        body {
+            background-color: #0b0f19;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+        }
+
+        
+        .todo-card {
+            background: #ffffff;
+            width: 380px;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 229, 255, 0.2);
+        }
+
+
+        h1 {
+            background-color: rgb(0, 229, 255);
+            color: white;
+            margin: -25px -25px 20px -25px;
+            padding: 18px;
+            text-align: center;
+            font-size: 1.3rem;
+            border-radius: 12px 12px 0 0;
+        }
+
+        
+        p {
+            margin: 12px 0;
+            font-size: 1rem;
+            color: #333333;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .completed {
+            text-decoration: line-through;
+            color: #9ca3af;
+        }
+
+        input[type="checkbox"] {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: rgb(0, 229, 255);
+        }
+
+        
+        .delete-btn {
+            background-color: #fee2e2;
+            color: #ef4444;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .delete-btn:hover {
+            background-color: #fecaca;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        #taskInput {
+            flex-grow: 1;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px; 
+        }
+
+        #taskInput:focus {
+            border-color: rgb(0, 229, 255);
+        }
+        #addBtn {
+            background-color: rgb(0, 229, 255);
+            color: white;
+            width: 80px;
+            height: 40px;
+            box-shadow: 2px 2px 5px grey;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        #addBtn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="todo-card">
+        <h1>Website Todo</h1>
+
+       
+        <div id="taskList">
+            <p>
+                <span><input type="checkbox"> web development CA</span>
+                <button class="delete-btn">Delete</button>
+            </p>
+            <p class="completed">
+                <span><input type="checkbox" checked> WEB ASSINGMENT</span>
+                <button class="delete-btn">Delete</button>
+            </p>
+        </div>
+
+       
+        <div class="input-area">
+            <input type="text" id="taskInput" placeholder="Enter a new task...">
+            <button id="addBtn">Add</button>
+        </div>
+    </div>
+
+    <script>
+
+        const taskInput = document.getElementById('taskInput');
+        const addBtn = document.getElementById('addBtn');
+        const taskList = document.getElementById('taskList');
+
+       
+        function addNewTask() {
+            let taskText = taskInput.value;
+
+            
+            if (taskText.trim() === "") {
+                alert("Please enter a task !");
+                return; //
+            }
+
+            
+            let newP = document.createElement('p');
+
+           
+            newP.innerHTML = `
+                <span><input type="checkbox"> ${taskText}</span>
+                <button class="delete-btn">Delete</button>
+            `;
+
+           
+            taskList.appendChild(newP);
+
+         
+            taskInput.value = "";
+        }
+
+        
+        addBtn.addEventListener('click', addNewTask);
+
+        
+        taskList.addEventListener('click', function(event) {
+            let clickedElement = event.target;
+            let paragraph = clickedElement.closest('p');
+
+            
+            if (clickedElement.type === 'checkbox') {
+                if (clickedElement.checked) {
+                    paragraph.classList.add('completed');
+                } else {
+                    paragraph.classList.remove('completed');
+                }
+            }
+
+        
+            if (clickedElement.classList.contains('delete-btn')) {
+                paragraph.remove();
+            }
+        });
+    </script>
+</body>
+</html>
