@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Adoption & Care</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation Bar (6 Pages) -->
+  <div class="navbar">
+    <div class="logo">Paws & Claws</div>
+    <div class="nav-links">
+      <div class="nav-btn active" onclick="showPage('home-page')">Home</div>
+      <div class="nav-btn" onclick="showPage('adopt-page')">Adopt</div>
+      <div class="nav-btn" onclick="showPage('tips-page')">Care Tips</div>
+      <div class="nav-btn" onclick="showPage('form-page')">Form</div>
+      <div class="nav-btn" onclick="showPage('stories-page')">Stories</div>
+      <div class="nav-btn" onclick="showPage('contact-page')">Contact</div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="container">
+
+    <!-- PAGE 1: HOME -->
+    <div id="home-page" class="page active-page">
+      <div class="hero-box">
+        <div class="hero-title">Find Your New Best Friend</div>
+        <div class="hero-desc">Give a loving home to pets in need. Browse our available animals today!</div>
+        <div class="main-btn" onclick="showPage('adopt-page')">View Available Pets</div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: ADOPT (Hardcoded HTML Cards - No Arrays!) -->
+    <div id="adopt-page" class="page">
+      <div class="section-title">Available Pets</div>
+      <div class="pet-grid">
+        
+        <div class="pet-card">
+          <div class="pet-img">Buddy (Dog)</div>
+          <div class="pet-name">Buddy</div>
+          <div class="pet-info">Age: 1 Year • Dog</div>
+          <div>Energetic and friendly Golden Retriever puppy looking for a home.</div>
+        </div>
+
+        <div class="pet-card">
+          <div class="pet-img">Luna (Cat)</div>
+          <div class="pet-name">Luna</div>
+          <div class="pet-info">Age: 2 Years • Cat</div>
+          <div>Calm and affectionate indoor cat who loves quiet rooms.</div>
+        </div>
+
+        <div class="pet-card">
+          <div class="pet-img">Max (Dog)</div>
+          <div class="pet-name">Max</div>
+          <div class="pet-info">Age: 3 Years • Dog</div>
+          <div>Well-trained and loyal companion, great with families.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE 3: CARE TIPS -->
+    <div id="tips-page" class="page">
+      <div class="section-title">Pet Care Tips</div>
+      <div class="card">
+        <div class="card-heading">1. Balanced Nutrition</div>
+        <div>Always provide clean water and food suited for your pet's age.</div>
+      </div>
+      <div class="card">
+        <div class="card-heading">2. Regular Exercise</div>
+        <div>Dogs need daily walks, while cats enjoy indoor play sessions.</div>
+      </div>
+    </div>
+
+    <!-- PAGE 4: ADOPTION FORM -->
+    <div id="form-page" class="page">
+      <div class="section-title">Adoption Application Form</div>
+      <div class="card">
+        <div class="input-group">
+          <div class="label-text">Your Full Name:</div>
+          <input type="text" id="user-name" placeholder="Enter your name" />
+        </div>
+        <div class="input-group">
+          <div class="label-text">Select Pet:</div>
+          <select id="user-pet">
+            <option>Buddy</option>
+            <option>Luna</option>
+            <option>Max</option>
+          </select>
+        </div>
+        <div class="main-btn" onclick="submitForm()">Submit Application</div>
+      </div>
+    </div>
+
+    <!-- PAGE 5: SUCCESS STORIES -->
+    <div id="stories-page" class="page">
+      <div class="section-title">Success Stories</div>
+      <div class="card">
+        <div class="card-heading">Sarah & Buddy</div>
+        <div>"Adopting Buddy was the best decision! He brings so much happiness into our home."</div>
+      </div>
+    </div>
+
+    <!-- PAGE 6: CONTACT -->
+    <div id="contact-page" class="page">
+      <div class="section-title">Contact Us</div>
+      <div class="card">
+        <div class="info-line">Address: 123 Shelter Lane, Cityville</div>
+        <div class="info-line">Phone: +1 (555) 019-2834</div>
+        <div class="info-line">Email: support@pawsandclaws.org</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="pet.js"></script>
+</body>
+</html>
