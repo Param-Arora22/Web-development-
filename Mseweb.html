@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Paws & Claws - Pet Adoption & Care</title>
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8f9fa;
+      color: #2d3748;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2b6cb0;
+      padding: 18px 40px;
+      color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 6px;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      background-color: #2c5282;
+    }
+
+    /* Container & Pages */
+    .container {
+      max-width: 950px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .active-page {
+      display: block;
+    }
+
+    /* Components & Typography */
+    .section-title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #2b6cb0;
+    }
+
+    .hero-box, .card, .pet-card, .feature-card, .faq-box {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      margin-bottom: 20px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .hero-title {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #1a202c;
+    }
+
+    .hero-desc {
+      color: #4a5568;
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .main-btn {
+      display: inline-block;
+      background-color: #48bb78;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .main-btn:hover {
+      background-color: #38a169;
+    }
+
+    /* Features Grid (Home Page) */
+    .features-grid {
+      display: flex;
+      gap: 20px;
+    }
+
+    .feature-card {
+      flex: 1;
+      padding: 20px;
+    }
+
+    .feature-heading {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #2b6cb0;
+    }
+
+    /* Pet Cards Grid */
+    .pet-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .pet-card {
+      width: 290px;
+      padding: 20px;
+    }
+
+    .pet-img {
+      width: 100%;
+      height: 120px;
+      background-color: #ebf8ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #2b6cb0;
+    }
+
+    .pet-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a202c;
+    }
+
+    .pet-info {
+      font-size: 14px;
+      color: #718096;
+      margin: 6px 0 12px 0;
+    }
+
+    .pet-desc {
+      font-size: 14px;
+      color: #4a5568;
+      margin-bottom: 15px;
+    }
+
+    .like-btn {
+      background-color: #fff5f5;
+      color: #e53e3e;
+      border: 1px solid #feb2b2;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* FAQ Accordion Styling */
+    .faq-box {
+      cursor: pointer;
+      padding: 20px;
+      margin-bottom: 12px;
+      transition: background 0.2s;
+    }
+
+    .faq-box:hover {
+      background-color: #f7fafc;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      font-size: 16px;
+      color: #2d3748;
+    }
+
+    .faq-answer {
+      display: none;
+      margin-top: 10px;
+      color: #4a5568;
+      font-size: 14px;
+      line-height: 1.4;
+      border-top: 1px solid #edf2f7;
+      padding-top: 10px;
+    }
+
+    /* Card typography */
+    .card-heading {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #2b6cb0;
+    }
+
+    .card-text {
+      color: #4a5568;
+      font-size: 15px;
+    }
+
+    /* Forms */
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .label-text {
+      margin-bottom: 6px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e0;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .info-line {
+      margin-bottom: 10px;
+      font-size: 15px;
+      color: #4a5568;
+    }
+
+    .bold-label {
+      font-weight: bold;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar (6 Pages) -->
+  <div class="navbar">
+    <div class="logo">Paws & Claws 🐾</div>
+    <div class="nav-links">
+      <div class="nav-btn active" onclick="showPage('home-page')">Home</div>
+      <div class="nav-btn" onclick="showPage('adopt-page')">Adopt</div>
+      <div class="nav-btn" onclick="showPage('tips-page')">Care Tips</div>
+      <div class="nav-btn" onclick="showPage('form-page')">Form</div>
+      <div class="nav-btn" onclick="showPage('stories-page')">Stories</div>
+      <div class="nav-btn" onclick="showPage('contact-page')">Contact</div>
+    </div>
+  </div>
+
+  <!-- Main Content Container -->
+  <div class="container">
+
+    <!-- PAGE 1: HOME -->
+    <div id="home-page" class="page active-page">
+      <div class="hero-box">
+        <div class="hero-title">Find Your New Best Friend</div>
+        <div class="hero-desc">Give a loving home to pets in need. Browse our available animals, learn care tips, and start your adoption journey today!</div>
+        <div class="main-btn" onclick="showPage('adopt-page')">View Available Pets</div>
+      </div>
+      
+      <div class="section-title">Why Adopt From Us?</div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-heading">Health Checked</div>
+          <div>All pets receive full vaccinations and medical checkups before adoption.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-heading">Trained Companions</div>
+          <div>Our animals are socialized and ready to fit right into your family.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-heading">Lifetime Support</div>
+          <div>We provide guidance and tips even after you bring your pet home.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE 2: ADOPT -->
+    <div id="adopt-page" class="page">
+      <div class="section-title">Available Pets for Adoption</div>
+      <div class="pet-grid">
+        
+        <div class="pet-card">
+          <div class="pet-img">🐶 Buddy</div>
+          <div class="pet-name">Buddy</div>
+          <div class="pet-info">Age: 1 Year • Dog</div>
+          <div class="pet-desc">Energetic and friendly Golden Retriever puppy looking for an active home.</div>
+          <div class="like-btn" onclick="likePet(this)">
+            <div>❤️ Like</div>
+            <div class="like-count">0</div>
+          </div>
+        </div>
+
+        <div class="pet-card">
+          <div class="pet-img">🐱 Luna</div>
+          <div class="pet-name">Luna</div>
+          <div class="pet-info">Age: 2 Years • Cat</div>
+          <div class="pet-desc">Calm and affectionate indoor cat who loves quiet rooms and sunny windowsills.</div>
+          <div class="like-btn" onclick="likePet(this)">
+            <div>❤️ Like</div>
+            <div class="like-count">0</div>
+          </div>
+        </div>
+
+        <div class="pet-card">
+          <div class="pet-img">🐕 Max</div>
+          <div class="pet-name">Max</div>
+          <div class="pet-info">Age: 3 Years • Dog</div>
+          <div class="pet-desc">Well-trained and loyal companion, great with children and outdoor walks.</div>
+          <div class="like-btn" onclick="likePet(this)">
+            <div>❤️ Like</div>
+            <div class="like-count">0</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAGE 3: CARE TIPS -->
+    <div id="tips-page" class="page">
+      <div class="section-title">Pet Care Tips & FAQ</div>
+      
+      <div class="card">
+        <div class="card-heading">1. Balanced Nutrition</div>
+        <div class="card-text">Always provide clean water and high-quality food tailored to your pet's age and weight.</div>
+      </div>
+      
+      <div class="card">
+        <div class="card-heading">2. Regular Exercise</div>
+        <div class="card-text">Dogs need daily walks, while cats thrive with interactive toys that stimulate their instincts.</div>
+      </div>
+
+      <!-- FAQ Accordion Feature -->
+      <div class="section-title" style="margin-top: 30px;">Frequently Asked Questions</div>
+      
+      <div class="faq-box" onclick="toggleFaq(this)">
+        <div class="faq-question">Q: What is the adoption fee?</div>
+        <div class="faq-answer">A: Our adoption fee covers vaccinations, microchipping, and health checks. Contact us for specific details!</div>
+      </div>
+
+      <div class="faq-box" onclick="toggleFaq(this)">
+        <div class="faq-question">Q: Can I visit the shelter before adopting?</div>
+        <div class="faq-answer">A: Yes! You can visit us during our working hours listed on the Contact page.</div>
+      </div>
+    </div>
+
+    <!-- PAGE 4: ADOPTION FORM -->
+    <div id="form-page" class="page">
+      <div class="section-title">Adoption Application Form</div>
+      <div class="card">
+        <div class="input-group">
+          <div class="label-text">Your Full Name:</div>
+          <input type="text" id="user-name" placeholder="Enter your full name" />
+        </div>
+        <div class="input-group">
+          <div class="label-text">Email Address:</div>
+          <input type="text" id="user-email" placeholder="Enter your email address" />
+        </div>
+        <div class="input-group">
+          <div class="label-text">Select Preferred Pet:</div>
+          <select id="user-pet">
+            <option>Buddy (Dog)</option>
+            <option>Luna (Cat)</option>
+            <option>Max (Dog)</option>
+          </select>
+        </div>
+        <div class="main-btn" onclick="submitForm()">Submit Application</div>
+      </div>
+    </div>
+
+    <!-- PAGE 5: SUCCESS STORIES -->
+    <div id="stories-page" class="page">
+      <div class="section-title">Adoption Success Stories</div>
+      <div class="card">
+        <div class="card-heading">Sarah & Buddy</div>
+        <div class="card-text">"Adopting Buddy was the best decision of my life! He brings so much joy, energy, and happiness into our home every single day."</div>
+      </div>
+      <div class="card">
+        <div class="card-heading">The Sharma Family & Luna</div>
+        <div class="card-text">"Luna adjusted to our apartment within two days. She loves napping right beside the sofa. Thank you Paws & Claws!"</div>
+      </div>
+    </div>
+
+    <!-- PAGE 6: CONTACT -->
+    <div id="contact-page" class="page">
+      <div class="section-title">Contact Us</div>
+      <div class="card">
+        <div class="info-line"><div class="bold-label">📍 Address:</div> Raj nagar,delhi </div>
+        <div class="info-line"><div class="bold-label">📞 Phone:</div> +91 987654321</div>
+        <div class="info-line"><div class="bold-label">✉️ Email:</div> support@pawsandclaws.org</div>
+        <div class="info-line"><div class="bold-label">⏰ Hours:</div> Mon - Sat: 9:00 AM - 6:00 PM</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 1. Page Switching Function
+    function showPage(pageId) {
+      const pages = document.querySelectorAll('.page');
+      for (let i = 0; i < pages.length; i++) {
+        pages[i].classList.remove('active-page');
+      }
+
+      document.getElementById(pageId).classList.add('active-page');
+
+      const buttons = document.querySelectorAll('.nav-btn');
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
+      }
+      event.target.classList.add('active');
+    }
+
+    // 2. Form Submission Alert
+    function submitForm() {
+      const nameBox = document.getElementById('user-name').value;
+      
+      if (nameBox === "") {
+        alert("Please enter your name before submitting!");
+      } else {
+        alert("Thank you, " + nameBox + "! Your adoption application has been sent successfully.");
+      }
+    }
+
+    // 3. Interactive Like Counter for Pet Cards
+    function likePet(btn) {
+      const countBox = btn.querySelector('.like-count');
+      let currentLikes = Number(countBox.innerText);
+      currentLikes = currentLikes + 1;
+      countBox.innerText = currentLikes;
+    }
+
+    // 4. Interactive FAQ Accordion (Shows/Hides Answer on Click)
+    function toggleFaq(box) {
+      const answer = box.querySelector('.faq-answer');
+      if (answer.style.display === 'block') {
+        answer.style.display = 'none';
+      } else {
+        answer.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
